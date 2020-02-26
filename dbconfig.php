@@ -17,10 +17,10 @@ try {
     // report error message
     echo $e->getMessage();
 }
-// $seriesQuery = "select title, rating from series";
-// $result = mysql_query($seriesQuery);
+$seriesQuery = "select title, rating from series";
+$result = mysql_query($seriesQuery, $conn);
 
-$test = $pdo->query('select rating from series');
+$test = $conn->query('select rating from series') or die ("Error querying.");
 foreach ($test as $row) {
     echo $row['rating'] . PHP_EOL;
 }

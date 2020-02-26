@@ -11,20 +11,15 @@ try {
     
     // display a message if connected to database successfully
     if ($conn) {
-        echo "Connected to the <strong>$db</strong> database successfully!";
+        // echo "Connected to the <strong>$db</strong> database successfully!";
     }
 } catch (PDOException $e) {
     // report error message
     echo $e->getMessage();
 }
-// $seriesQuery = "select title, rating from series";
-// $result = mysql_query($seriesQuery);
 
-$test = $pdo->query('select rating from series');
-foreach ($test as $row) {
-    echo $row['rating'] . "\n";
-}
-
+$series = $conn->query('select title, rating from series') or die ("Error querying.");
+$films = $conn->query('select titel, duur from films') or die ("Error querying");
 ?>
 
 <!DOCTYPE html>
@@ -33,17 +28,47 @@ foreach ($test as $row) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+         
+        table, td {
+            border: 1px solid black
+        }
+        
+    </style>
 </head>
 <body>
-<?php
 
-?>
+
+<h1>Series</h1>
 <table>
     <tr>
         <th>Titel</th>
         <th>Rating</th>
     </tr>
+        <?php
+        foreach($series as $row) { ?>
+            <tr>
+                <td><?php echo $row["title"]?></td>
+                <td><?php echo $row["rating"] ?></td>
+            </tr>
+        <?php } ?>
 </table>
+<h1>Films</h1>
+<table>
+    <tr>
+        <th>Titel</th>
+        <th>Duur</th>
+    </tr>
+    <?php
+    foreach($films as $row) { ?>
+        <tr>
+            <td><?php echo $row["titel"] ?></td>
+            <td><?php echo $row["duur"] ?></td>
+        </tr>
+    <?php } ?>
+</table>
+
+
 
 </body>
 </html>
