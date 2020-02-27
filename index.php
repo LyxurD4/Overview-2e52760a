@@ -11,15 +11,15 @@ try {
     
     // display a message if connected to database successfully
     if ($conn) {
-        // echo "Connected to the <strong>$db</strong> database successfully!";
+        echo "Connected to the <strong>$db</strong> database successfully!";
     }
 } catch (PDOException $e) {
     // report error message
     echo $e->getMessage();
 }
 
-$series = $conn->query('select title, rating from series') or die ("Error querying.");
-$films = $conn->query('select titel, duur from films') or die ("Error querying");
+$series = $conn->query ('select title, rating from series') or die ("Error querying.");
+$films = $conn->query ('select titel, duur from films') or die ("Error querying");
 ?>
 
 <!DOCTYPE html>
