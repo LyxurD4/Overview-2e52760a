@@ -18,8 +18,8 @@ try {
     echo $e->getMessage();
 }
 
-$series = $conn->query ('select title, rating from series') or die ("Error querying.");
-$films = $conn->query ('select titel, duur from films') or die ("Error querying");
+$series = $conn->query('select title, rating from series');
+$films = $conn->query('select titel, duur from films');
 ?>
 
 <!DOCTYPE html>
